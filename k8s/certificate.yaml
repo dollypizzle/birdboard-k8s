@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha2
+kind: Certificate
+metadata:
+  name: dollyp-birdboard-ml-tls
+spec:
+  secretName: dollyp-birdboard-ml
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: dollyp-birdboard.ml
+  dnsNames:
+    - dollyp-birdboard.ml
+    - www.dollyp-birdboard.ml
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - dollyp-birdboard.ml
+          - www.dollyp-birdboard.ml
