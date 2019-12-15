@@ -13,11 +13,11 @@ before_install:
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
   - gcloud auth activate-service-account --key-file service-account.json
-  - gcloud config set project birdboard-k8s-258109
+  - gcloud config set project birdb-262112
   - gcloud config set compute/zone us-central1-a
-  - gcloud container clusters get-credentials birdboard-cluster
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker build -t noalistic/birdboard-test -f Dockerfile .
+  - gcloud container clusters get-credentials birdboard-k8s
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t dollypizzle/birdboard-test -f Dockerfile .
 
 script:
   - docker run -e CI=true dollypizzle/birdboard-test vendor/bin/phpunit
