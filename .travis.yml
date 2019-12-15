@@ -20,7 +20,7 @@ before_install:
   - docker build -t noalistic/birdboard-test -f Dockerfile .
 
 script:
-  - docker run -e CI=true noalistic/birdboard-test vendor/bin/phpunit
+  - docker run -e CI=true dollypizzle/birdboard-test vendor/bin/phpunit
 
 deploy:
   provider: script
