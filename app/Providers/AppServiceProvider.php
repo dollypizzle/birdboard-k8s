@@ -29,5 +29,9 @@ class AppServiceProvider extends ServiceProvider
     {
         // Project::observe(ProjectObserver::class);
         // Task::observe(TaskObserver::class);
+
+        if (env('APP_ENV') !== 'local') {
+          \URL::forceScheme('https');
+        }
     }
 }
