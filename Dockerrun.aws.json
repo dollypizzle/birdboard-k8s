@@ -1,0 +1,26 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "birdboard",
+      "image": "dollypizzle/birdboard-app",
+      "hostname": "app",
+      "memory": 512,
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "dollypizzle/birdboard-nginx",
+      "hostname": "web",
+      "memory": 128,
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["birdboard"]
+    }
+  ]
+}
