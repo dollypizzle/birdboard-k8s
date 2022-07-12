@@ -5,10 +5,26 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /$1
+    cert-manager.io/cluster-issuer: 'letsencrypt-prod'
+    nginx.ingress.kubernetes.io/ssl-redirect: 'false'
     # UPDATE THIS LINE ABOVE
 spec:
+  tls:
+    - hosts:
+        - dollyp-birdboard.ml
+        - www.dollyp-birdboard.ml
+      secretName: dollyp-birdboard-ml
   rules:
-    - http:
+    - host: dollyp-birdboard.ml
+      http:
+        paths:
+          - path: /?(.*)
+            # UPDATE THIS LINE ABOVE
+            backend:
+              serviceName: birdboard-cluster-ip-service
+              servicePort: 80
+    - host: www.dollyp-birdboard.ml
+      http:
         paths:
           - path: /?(.*)
             # UPDATE THIS LINE ABOVE
