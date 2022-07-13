@@ -45,10 +45,10 @@
 
 
                         <!-- Right Side Of Navbar -->
-                        <div class="flex items-center ml-auto">
+                        <div class="flex items-center ml-auto" style="margin-top: 13px">
                             <!-- Authentication Links -->
                             @guest
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" style="margin-right: 10px" href="{{ route('login') }}">{{ __('Login') }}</a>
                             @if (Route::has('register'))
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             @endif
